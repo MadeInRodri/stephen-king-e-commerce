@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* login.css */
+
+.group-input:focus-within label {
+  transform: translateY(-1.5rem) scale(0.85);
+  color: #00fbfb;
+}
+
+.group-input:focus-within input {
+  border-bottom-color: #00fbfb;
+}
+
+input:not(:placeholder-shown) + label {
+  transform: translateY(-1.5rem) scale(0.85);
+}
