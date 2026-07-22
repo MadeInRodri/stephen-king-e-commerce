@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import "../../globals.css";
 import bcrypt from "bcryptjs";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface userData {
   fullName: string;
@@ -13,10 +14,23 @@ interface userData {
 }
 
 export default function RegisterPage() {
-  const { register, handleSubmit } = useForm<userData>();
+  const { register, handleSubmit, reset, resetField } = useForm<userData>();
+  const router = useRouter();
+
+  const navigate = () => {
+    setTimeout(() => {
+      router.push("/login");
+    }, 2000);
+  };
 
   const onSubmit: SubmitHandler<userData> = (data) => {
     // console.log(data);
+
+    if (data.password != data.confirmPassword) {
+      toast.warning("La contraseña no coincide con la colocada");
+      resetField("confirmPassword");
+      return;
+    }
 
     //Creando la salt y hasheando la contra
     const salt = bcrypt.genSaltSync(10);
@@ -34,8 +48,9 @@ export default function RegisterPage() {
       //Lo creamos y mandamos el aviso
 
       localStorage.setItem("accounts", JSON.stringify([myUserData]));
-      toast.success("Cuenta creada exitosamente. ¡Únete al vacío!");
-
+      toast.success("Cuenta creada exitosamente. Tú también flotarás...");
+      reset();
+      navigate();
       //Test
       // const users = JSON.parse(localStorage.getItem("accounts") as string);
       // console.log(users);
@@ -49,6 +64,9 @@ export default function RegisterPage() {
       //Si está ocupado, avisamos
       if (isInAccounts) {
         toast.error("El correo ya está registrado. Intenta con otro.");
+        resetField("email");
+        resetField("password");
+        resetField("confirmPassword");
       }
 
       //Sino, registramos
@@ -59,7 +77,8 @@ export default function RegisterPage() {
         );
 
         //Test
-        toast.success("Cuenta creada exitosamente. ¡Únete al vacío!");
+        toast.success("Cuenta creada exitosamente. Tú también flotarás...");
+        navigate();
         // console.log(users);
       }
     }
@@ -70,9 +89,9 @@ export default function RegisterPage() {
       <main className="w-full max-w-md z-10">
         <header className="text-center mb-10">
           <h1 className="text-5xl font-extrabold text-[#ff00ff] tracking-tighter uppercase mb-3">
-            EL VACÍO
+            EL BAZAR DE LAS PESADILLAS
           </h1>
-          <p className="text-[#a3a3a3] text-base">Únete a la oscuridad.</p>
+          <p className="text-[#a3a3a3] text-base">¿Tú también flotarás?</p>
         </header>
 
         <div className="bg-[#131313] border border-[#2a2a2a] rounded-xl p-8">
