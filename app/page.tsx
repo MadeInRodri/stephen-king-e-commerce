@@ -1,65 +1,203 @@
 import Image from "next/image";
+import Link from "next/link";
+import "./globals.css";
+import { FaUser, FaShoppingCart } from "react-icons/fa";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="text-[#e5e2e1] min-h-screen flex flex-col relative overflow-x-hidden bg-[#050505] font-sans">
+      {/* TopNavBar */}
+      <header className="bg-[#131313]/90 backdrop-blur-xl fixed top-0 w-full border-b border-white/10 z-50">
+        <div className="flex justify-between items-center px-4 md:px-16 py-4 w-full max-w-7xl mx-auto hidden md:flex">
+          <div className="text-[#ff00ff] font-extrabold text-2xl tracking-tighter uppercase">
+            EL BAZAR DE LAS PESADILLAS
+          </div>
+          <nav className="flex gap-6">
+            <Link
+              href="/"
+              className="text-[#ff00ff] font-bold border-b-2 border-[#ff00ff] pb-1 hover:text-[#00fbfb] transition-colors duration-300"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Inicio
+            </Link>
+            <Link
+              href="/login"
+              className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              Catálogo
+            </Link>
+            <Link
+              href="/login"
+              className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
+            >
+              Novedades
+            </Link>
+            <Link
+              href="/login"
+              className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
+            >
+              Autores
+            </Link>
+          </nav>
+          <div className="flex gap-6 text-[#ff00ff]">
+            <Link
+              href="/login"
+              className="hover:text-[#00fbfb] transition-colors duration-300"
+            >
+              <FaShoppingCart />
+            </Link>
+            <Link
+              href="/login"
+              className="hover:text-[#00fbfb] transition-colors duration-300"
+            >
+              <FaUser />
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Mobile Header */}
+        <div className="md:hidden flex justify-center items-center py-4 border-b border-white/10">
+          <div className="text-[#ff00ff] font-extrabold text-xl tracking-tighter uppercase text-center">
+            EL BAZAR DE LAS <br /> PESADILLAS
+          </div>
         </div>
+      </header>
+
+      <main className="flex-grow pt-24 pb-32">
+        {/* Hero Section */}
+        <section className="w-full max-w-7xl mx-auto px-4 md:px-16 py-12 md:py-24 flex flex-col md:flex-row items-center gap-8 relative">
+          <div className="w-full md:w-1/2 z-10 text-center md:text-left flex flex-col items-center md:items-start">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+              El Maestro <br />{" "}
+              <span className="text-[#ff00ff]">del Terror</span>
+            </h1>
+            <p className="text-[#a3a3a3] text-base md:text-lg mb-8 max-w-md">
+              Adéntrate en el universo del autor que redefinió el miedo.
+              Descubre ediciones exclusivas, clásicos inmortales y el vacío que
+              se esconde detrás de cada página.
+            </p>
+            <Link
+              href="/login"
+              className="bg-[#ff00ff] text-black font-bold px-8 py-4 rounded-md hover:bg-[#d900d9] transition-colors"
+            >
+              Ver Catálogo →
+            </Link>
+          </div>
+          <div className="w-full md:w-1/2 relative mt-8 md:mt-0 h-[400px] md:h-[600px]">
+            <div className="relative w-full h-full rounded-xl overflow-hidden glass-card">
+              <Image
+                src="/stephen-king.jpg"
+                alt="Stephen King Vibe"
+                fill
+                className="object-cover opacity-80"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Product Grid Section (Simulando JSON) */}
+        <section className="w-full max-w-7xl mx-auto px-4 md:px-16 py-12">
+          <h2 className="text-3xl font-bold text-white mb-10 border-b border-white/15 pb-4">
+            Más Populares
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Product Card 1 */}
+            <article className="glass-card rounded-lg flex flex-col md:flex-row overflow-hidden group h-full">
+              <div className="w-full md:w-2/5 h-[300px] md:h-auto relative shrink-0 bg-black/20">
+                <Image
+                  src="/la-niebla.webp"
+                  alt="La Niebla"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="p-6 flex flex-col justify-between flex-grow">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-2 h-2 rounded-full bg-[#ff00ff]"></span>
+                    <span className="text-xs text-[#a3a3a3] uppercase tracking-widest font-mono">
+                      TERROR PSICOLÓGICO
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff00ff] transition-colors">
+                    La Niebla
+                  </h3>
+                  <p className="text-[#a3a3a3] text-sm mb-4 line-clamp-3">
+                    Una bruma espesa y antinatural se apodera del pueblo,
+                    trayendo consigo horrores inimaginables. El verdadero terror
+                    podría estar adentro.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                  <span className="text-[#00fbfb] font-bold font-mono">
+                    $24.99
+                  </span>
+                  <Link
+                    href="/login"
+                    className="border border-[#00fbfb] text-[#00fbfb] text-sm font-bold px-4 py-2 rounded hover:bg-[#00fbfb]/10 transition-colors"
+                  >
+                    + Agregar
+                  </Link>
+                </div>
+              </div>
+            </article>
+
+            {/* Product Card 2 */}
+            <article className="glass-card rounded-lg flex flex-col md:flex-row overflow-hidden group h-full">
+              <div className="w-full md:w-2/5 h-[300px] md:h-auto relative shrink-0 bg-black/20">
+                <Image
+                  src="/la-niebla.webp"
+                  alt="It (Eso)"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-6 flex flex-col justify-between flex-grow">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-2 h-2 rounded-full bg-[#ff00ff]"></span>
+                    <span className="text-xs text-[#a3a3a3] uppercase tracking-widest font-mono">
+                      TERROR CLÁSICO
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff00ff] transition-colors">
+                    It (Eso)
+                  </h3>
+                  <p className="text-[#a3a3a3] text-sm mb-4 line-clamp-3">
+                    Una entidad primordial acecha en las alcantarillas de Derry.
+                    El miedo toma la forma de tus peores pesadillas.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                  <span className="text-[#00fbfb] font-bold font-mono">
+                    $29.99
+                  </span>
+                  <Link
+                    href="/login"
+                    className="border border-[#00fbfb] text-[#00fbfb] text-sm font-bold px-4 py-2 rounded hover:bg-[#00fbfb]/10 transition-colors"
+                  >
+                    + Agregar
+                  </Link>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-[#0e0e0e] w-full mt-auto border-t border-dashed border-white/20">
+        <div className="flex flex-col md:flex-row justify-between items-center px-4 md:px-16 py-6 gap-4 w-full max-w-7xl mx-auto">
+          <div className="font-extrabold text-xl text-[#ff00ff] text-center md:text-left tracking-tighter">
+            EL BAZAR DE LAS PESADILLAS
+          </div>
+          <div className="text-[#00fbfb] font-mono text-xs text-center">
+            © 2026 TODOS LOS DERECHOS RESERVADOS.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
