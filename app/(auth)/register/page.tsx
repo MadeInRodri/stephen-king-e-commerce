@@ -1,6 +1,70 @@
+"use client";
+
+import { useForm, SubmitHandler } from "react-hook-form";
 import "../../globals.css";
+import bcrypt from "bcryptjs";
+import { toast } from "sonner";
+
+interface userData {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 export default function RegisterPage() {
+  const { register, handleSubmit } = useForm<userData>();
+
+  const onSubmit: SubmitHandler<userData> = (data) => {
+    // console.log(data);
+
+    //Creando la salt y hasheando la contra
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(data.password, salt);
+
+    //La data de mi user con la contra hasheada
+    const myUserData = {
+      fullName: data.fullName,
+      email: data.email,
+      password: hashedPassword,
+    };
+
+    //Si no existe el item...
+    if (!localStorage.getItem("accounts")) {
+      //Lo creamos y mandamos el aviso
+
+      localStorage.setItem("accounts", JSON.stringify([myUserData]));
+      toast.success("Cuenta creada exitosamente. ¡Únete al vacío!");
+
+      //Test
+      // const users = JSON.parse(localStorage.getItem("accounts") as string);
+      // console.log(users);
+    } else {
+      //Sino, comprobamos que el correo no esté ocupado
+      const users = JSON.parse(localStorage.getItem("accounts") as string);
+      const isInAccounts = users.some(
+        (u: userData) => u.email === myUserData.email,
+      );
+
+      //Si está ocupado, avisamos
+      if (isInAccounts) {
+        toast.error("El correo ya está registrado. Intenta con otro.");
+      }
+
+      //Sino, registramos
+      else {
+        localStorage.setItem(
+          "accounts",
+          JSON.stringify([...users, myUserData]),
+        );
+
+        //Test
+        toast.success("Cuenta creada exitosamente. ¡Únete al vacío!");
+        // console.log(users);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center px-4 font-sans">
       <main className="w-full max-w-md z-10">
@@ -12,9 +76,14 @@ export default function RegisterPage() {
         </header>
 
         <div className="bg-[#131313] border border-[#2a2a2a] rounded-xl p-8">
-          <form className="flex flex-col gap-8" method="POST">
+          <form
+            className="flex flex-col gap-8"
+            method="POST"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="relative group-input pt-4">
               <input
+                {...register("fullName")}
                 id="fullName"
                 name="fullName"
                 type="text"
@@ -32,6 +101,7 @@ export default function RegisterPage() {
 
             <div className="relative group-input pt-4">
               <input
+                {...register("email")}
                 id="email"
                 name="email"
                 type="email"
@@ -49,6 +119,7 @@ export default function RegisterPage() {
 
             <div className="relative group-input pt-4">
               <input
+                {...register("password")}
                 id="password"
                 name="password"
                 type="password"
@@ -66,6 +137,7 @@ export default function RegisterPage() {
 
             <div className="relative group-input pt-4">
               <input
+                {...register("confirmPassword")}
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
