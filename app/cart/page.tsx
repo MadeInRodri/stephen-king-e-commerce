@@ -8,8 +8,12 @@ import { useRouter } from "next/navigation";
 import { FaShoppingCart, FaTrash } from "react-icons/fa";
 import { BiSolidExit } from "react-icons/bi";
 import "../globals.css";
+
+//Componentes
 import Cart from "@/components/cart/Cart";
 import Footer from "@/components/ui/Footer";
+import ProductCard from "@/components/product/ProductCard";
+import Nav from "@/components/ui/Nav";
 
 interface Book {
   id: number;
@@ -160,13 +164,13 @@ export default function CartPage() {
   //Effect para verificar sesión activa y data
   useEffect(() => {
     //Si no hay sesión, para el login
-    const activeSession = sessionStorage.getItem("activeUser");
-    if (!activeSession) {
-      route.push("/login");
-    }
 
     //Mandamos a traer los libros
     const fetchBooks = async () => {
+      const activeSession = sessionStorage.getItem("activeUser");
+      if (!activeSession) {
+        route.push("/login");
+      }
       try {
         const response = await fetch("/products.json");
         if (!response.ok) throw new Error("Error de conexión");
@@ -196,32 +200,7 @@ export default function CartPage() {
               {userName}
             </span>
           </div>
-          <nav className="flex gap-6">
-            <Link
-              href="/"
-              className="text-[#ff00ff] font-bold border-b-2 border-[#ff00ff] pb-1 hover:text-[#00fbfb] transition-colors duration-300"
-            >
-              Inicio
-            </Link>
-            <Link
-              href="/login"
-              className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
-            >
-              Catálogo
-            </Link>
-            <Link
-              href="/login"
-              className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
-            >
-              Novedades
-            </Link>
-            <Link
-              href="/login"
-              className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
-            >
-              Autores
-            </Link>
-          </nav>
+          <Nav />
           <div className="flex gap-6 text-[#ff00ff]">
             <button
               onClick={() => setIsCartOpen(true)}
@@ -272,48 +251,13 @@ export default function CartPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {books.map((b) => (
-              <article
-                className="glass-card rounded-lg flex flex-col md:flex-row overflow-hidden group h-full"
+              <ProductCard
+                b={b}
+                action={() => {
+                  addCartItem(b.id);
+                }}
                 key={b.id}
-              >
-                <div className="w-full md:w-2/5 h-[300px] md:h-auto relative shrink-0 bg-black/20">
-                  <Image
-                    src={b.urlImage}
-                    alt={b.title}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <div className="p-6 flex flex-col justify-between flex-grow">
-                  <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="w-2 h-2 rounded-full bg-[#ff00ff]"></span>
-                      <span className="text-xs text-[#a3a3a3] uppercase tracking-widest font-mono">
-                        {b.category}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff00ff] transition-colors">
-                      {b.title}
-                    </h3>
-                    <p className="text-[#a3a3a3] text-sm mb-4 line-clamp-3">
-                      {b.description}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
-                    <span className="text-[#00fbfb] font-bold font-mono">
-                      ${b.price}
-                    </span>
-                    <button
-                      className="border border-[#00fbfb] text-[#00fbfb] text-sm font-bold px-4 py-2 rounded hover:bg-[#00fbfb]/10 transition-colors"
-                      onClick={() => {
-                        addCartItem(b.id);
-                      }}
-                    >
-                      + Agregar
-                    </button>
-                  </div>
-                </div>
-              </article>
+              />
             ))}
           </div>
         </section>
@@ -321,16 +265,6 @@ export default function CartPage() {
 
       {/* Footer */}
       <Footer />
-      {/* <footer className="bg-[#0e0e0e] w-full mt-auto border-t border-dashed border-white/20">
-        <div className="flex flex-col md:flex-row justify-between items-center px-4 md:px-16 py-6 gap-4 w-full max-w-7xl mx-auto">
-          <div className="font-extrabold text-xl text-[#ff00ff] text-center md:text-left tracking-tighter">
-            EL BAZAR DE LAS PESADILLAS
-          </div>
-          <div className="text-[#00fbfb] font-mono text-xs text-center">
-            By: MadeInRodri
-          </div>
-        </div>
-      </footer> */}
 
       {isCartOpen && (
         <Cart

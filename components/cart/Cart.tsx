@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 import CartItem from "./CartItem";
 
-interface cartBook {
+interface CartBook {
   id: number;
   title: string;
   price: number;
@@ -12,7 +12,7 @@ interface cartBook {
 }
 
 interface CartProps {
-  cartItems: cartBook[];
+  cartItems: CartBook[];
   total: number;
   setIsCartOpen: (isOpen: boolean) => void;
   addCartItem: (id: number) => void;
@@ -20,7 +20,6 @@ interface CartProps {
   handleRemoveClick: (id: number) => void;
 }
 
-// 3. Desestructuramos las props directamente en los parámetros de la función
 export default function Cart({
   cartItems,
   total,
