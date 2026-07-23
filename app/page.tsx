@@ -4,6 +4,8 @@ import Link from "next/link";
 import "./globals.css";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import Footer from "@/components/ui/Footer";
+import HeroSection from "@/components/ui/HeroSection";
 
 interface Book {
   id: number;
@@ -107,36 +109,7 @@ export default function LandingPage() {
       </header>
 
       <main className="flex-grow pt-24 pb-32">
-        <section className="w-full max-w-7xl mx-auto px-4 md:px-16 py-12 md:py-24 flex flex-col md:flex-row items-center gap-8 relative">
-          <div className="w-full md:w-1/2 z-10 text-center md:text-left flex flex-col items-center md:items-start">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-              El Maestro <br />{" "}
-              <span className="text-[#ff00ff]">del Terror</span>
-            </h1>
-            <p className="text-[#a3a3a3] text-base md:text-lg mb-8 max-w-md">
-              Adéntrate en el universo del autor que redefinió el miedo.
-              Descubre ediciones exclusivas, clásicos inmortales y el vacío que
-              se esconde detrás de cada página.
-            </p>
-            <Link
-              href="/login"
-              className="bg-[#ff00ff] text-black font-bold px-8 py-4 rounded-md hover:bg-[#d900d9] transition-colors"
-            >
-              Ver Catálogo →
-            </Link>
-          </div>
-          <div className="w-full md:w-1/2 relative mt-8 md:mt-0 h-[400px] md:h-[600px]">
-            <div className="relative w-full h-full rounded-xl overflow-hidden glass-card">
-              <Image
-                src="/stephen-king.jpg"
-                alt="Stephen King Vibe"
-                fill
-                className="object-cover opacity-80"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         <section className="w-full max-w-7xl mx-auto px-4 md:px-16 py-12">
           <h2 className="text-3xl font-bold text-white mb-10 border-b border-white/15 pb-4">
@@ -192,16 +165,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#0e0e0e] w-full mt-auto border-t border-dashed border-white/20">
-        <div className="flex flex-col md:flex-row justify-between items-center px-4 md:px-16 py-6 gap-4 w-full max-w-7xl mx-auto">
-          <div className="font-extrabold text-xl text-[#ff00ff] text-center md:text-left tracking-tighter">
-            EL BAZAR DE LAS PESADILLAS
-          </div>
-          <div className="text-[#00fbfb] font-mono text-xs text-center">
-            By: MadeInRodri
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
