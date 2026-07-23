@@ -75,7 +75,7 @@ export default function LoginPage() {
     reset();
 
     setTimeout(() => {
-      router.push("/");
+      router.push("/cart");
     }, 2000);
   };
 
