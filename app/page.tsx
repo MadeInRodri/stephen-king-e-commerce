@@ -1,12 +1,63 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
+import { useEffect, useState } from "react";
+
+interface Book {
+  id: number;
+  title: string;
+  author: string;
+  price: number;
+  urlImage: string;
+  category: string;
+  description: string;
+}
 
 export default function LandingPage() {
+  //Libros
+  const [newBooks, setNewBooks] = useState<Book[]>([]);
+
+  useEffect(() => {
+    //Función para traer el json
+    const fetchRandomBooks = async () => {
+      try {
+        //Lo traemos
+        const response = await fetch("/products.json");
+        if (!response.ok) throw new Error("Error de conexión");
+
+        const books: Book[] = await response.json();
+
+        const max = books.length - 1;
+        const min = 0;
+        const cantidad = 6;
+
+        const numeros = new Set<number>();
+
+        while (numeros.size < cantidad) {
+          const num = Math.floor(Math.random() * (max - min + 1)) + min;
+          numeros.add(num);
+        }
+
+        const randomBooksArray: Book[] = [];
+
+        for (const index of numeros) {
+          randomBooksArray.push(books[index]);
+        }
+
+        setNewBooks(randomBooksArray);
+      } catch (error) {
+        console.error("Error cargando los libros:", error);
+      }
+    };
+
+    // Llamamos a la función
+    fetchRandomBooks();
+  }, []);
+
   return (
     <div className="text-[#e5e2e1] min-h-screen flex flex-col relative overflow-x-hidden bg-[#050505] font-sans">
-      {/* TopNavBar */}
       <header className="bg-[#131313]/90 backdrop-blur-xl fixed top-0 w-full border-b border-white/10 z-50">
         <div className="flex justify-between items-center px-4 md:px-16 py-4 w-full max-w-7xl mx-auto hidden md:flex">
           <div className="text-[#ff00ff] font-extrabold text-2xl tracking-tighter uppercase">
@@ -45,16 +96,9 @@ export default function LandingPage() {
             >
               <FaShoppingCart />
             </Link>
-            <Link
-              href="/login"
-              className="hover:text-[#00fbfb] transition-colors duration-300"
-            >
-              <FaUser />
-            </Link>
           </div>
         </div>
 
-        {/* Mobile Header */}
         <div className="md:hidden flex justify-center items-center py-4 border-b border-white/10">
           <div className="text-[#ff00ff] font-extrabold text-xl tracking-tighter uppercase text-center">
             EL BAZAR DE LAS <br /> PESADILLAS
@@ -63,7 +107,6 @@ export default function LandingPage() {
       </header>
 
       <main className="flex-grow pt-24 pb-32">
-        {/* Hero Section */}
         <section className="w-full max-w-7xl mx-auto px-4 md:px-16 py-12 md:py-24 flex flex-col md:flex-row items-center gap-8 relative">
           <div className="w-full md:w-1/2 z-10 text-center md:text-left flex flex-col items-center md:items-start">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
@@ -95,94 +138,55 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Product Grid Section (Simulando JSON) */}
         <section className="w-full max-w-7xl mx-auto px-4 md:px-16 py-12">
           <h2 className="text-3xl font-bold text-white mb-10 border-b border-white/15 pb-4">
             Más Populares
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Product Card 1 */}
-            <article className="glass-card rounded-lg flex flex-col md:flex-row overflow-hidden group h-full">
-              <div className="w-full md:w-2/5 h-[300px] md:h-auto relative shrink-0 bg-black/20">
-                <Image
-                  src="/la-niebla.webp"
-                  alt="La Niebla"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+            {newBooks.map((b) => (
+              <article
+                className="glass-card rounded-lg flex flex-col md:flex-row overflow-hidden group h-full"
+                key={b.id}
+              >
+                <div className="w-full md:w-2/5 h-[300px] md:h-auto relative shrink-0 bg-black/20">
+                  <Image
+                    src={b.urlImage}
+                    alt={b.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
 
-              <div className="p-6 flex flex-col justify-between flex-grow">
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="w-2 h-2 rounded-full bg-[#ff00ff]"></span>
-                    <span className="text-xs text-[#a3a3a3] uppercase tracking-widest font-mono">
-                      TERROR PSICOLÓGICO
-                    </span>
+                <div className="p-6 flex flex-col justify-between flex-grow">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#ff00ff]"></span>
+                      <span className="text-xs text-[#a3a3a3] uppercase tracking-widest font-mono">
+                        {b.category}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff00ff] transition-colors">
+                      {b.title}
+                    </h3>
+                    <p className="text-[#a3a3a3] text-sm mb-4 line-clamp-3">
+                      {b.description}
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff00ff] transition-colors">
-                    La Niebla
-                  </h3>
-                  <p className="text-[#a3a3a3] text-sm mb-4 line-clamp-3">
-                    Una bruma espesa y antinatural se apodera del pueblo,
-                    trayendo consigo horrores inimaginables. El verdadero terror
-                    podría estar adentro.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
-                  <span className="text-[#00fbfb] font-bold font-mono">
-                    $24.99
-                  </span>
-                  <Link
-                    href="/login"
-                    className="border border-[#00fbfb] text-[#00fbfb] text-sm font-bold px-4 py-2 rounded hover:bg-[#00fbfb]/10 transition-colors"
-                  >
-                    + Agregar
-                  </Link>
-                </div>
-              </div>
-            </article>
-
-            {/* Product Card 2 */}
-            <article className="glass-card rounded-lg flex flex-col md:flex-row overflow-hidden group h-full">
-              <div className="w-full md:w-2/5 h-[300px] md:h-auto relative shrink-0 bg-black/20">
-                <Image
-                  src="/la-niebla.webp"
-                  alt="It (Eso)"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow">
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="w-2 h-2 rounded-full bg-[#ff00ff]"></span>
-                    <span className="text-xs text-[#a3a3a3] uppercase tracking-widest font-mono">
-                      TERROR CLÁSICO
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                    <span className="text-[#00fbfb] font-bold font-mono">
+                      ${b.price}
                     </span>
+                    <Link
+                      href="/login"
+                      className="border border-[#00fbfb] text-[#00fbfb] text-sm font-bold px-4 py-2 rounded hover:bg-[#00fbfb]/10 transition-colors"
+                    >
+                      + Agregar
+                    </Link>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ff00ff] transition-colors">
-                    It (Eso)
-                  </h3>
-                  <p className="text-[#a3a3a3] text-sm mb-4 line-clamp-3">
-                    Una entidad primordial acecha en las alcantarillas de Derry.
-                    El miedo toma la forma de tus peores pesadillas.
-                  </p>
                 </div>
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
-                  <span className="text-[#00fbfb] font-bold font-mono">
-                    $29.99
-                  </span>
-                  <Link
-                    href="/login"
-                    className="border border-[#00fbfb] text-[#00fbfb] text-sm font-bold px-4 py-2 rounded hover:bg-[#00fbfb]/10 transition-colors"
-                  >
-                    + Agregar
-                  </Link>
-                </div>
-              </div>
-            </article>
+              </article>
+            ))}
           </div>
         </section>
       </main>
@@ -194,7 +198,7 @@ export default function LandingPage() {
             EL BAZAR DE LAS PESADILLAS
           </div>
           <div className="text-[#00fbfb] font-mono text-xs text-center">
-            © 2026 TODOS LOS DERECHOS RESERVADOS.
+            By: MadeInRodri
           </div>
         </div>
       </footer>

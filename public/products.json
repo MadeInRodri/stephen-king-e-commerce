@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "title": "El Resplandor",
+    "author": "Stephen King",
+    "price": 24.99,
+    "urlImage": "/books/el-resplandor.webp",
+    "category": "Terror",
+    "description": "El Hotel Overlook te espera. Una obra maestra del terror que explora los abismos de la locura y el aislamiento invernal."
+  },
+  {
+    "id": 2,
+    "title": "It (Eso)",
+    "author": "Stephen King",
+    "price": 29.99,
+    "urlImage": "/books/it.webp",
+    "category": "Terror",
+    "description": "Una entidad primordial acecha en las alcantarillas de Derry. El miedo toma la forma de tus peores pesadillas."
+  },
+  {
+    "id": 3,
+    "title": "Misery",
+    "author": "Stephen King",
+    "price": 21.5,
+    "urlImage": "/books/misery.webp",
+    "category": "Suspenso",
+    "description": "El fanatismo llevado al extremo. Un escritor atrapado por su mayor admiradora en una cabaña aislada."
+  },
+  {
+    "id": 4,
+    "title": "Cementerio de Animales",
+    "author": "Stephen King",
+    "price": 22.9,
+    "urlImage": "/books/cementerio-de-animales.webp",
+    "category": "Terror",
+    "description": "A veces la muerte es mejor. Una advertencia oscura sobre los límites del dolor y la resurrección."
+  },
+  {
+    "id": 5,
+    "title": "La Niebla",
+    "author": "Stephen King",
+    "price": 18.5,
+    "urlImage": "/books/la-niebla.webp",
+    "category": "Ciencia Ficción",
+    "description": "Una bruma espesa y antinatural se apodera del pueblo, trayendo consigo horrores inimaginables."
+  },
+  {
+    "id": 6,
+    "title": "Carrie",
+    "author": "Stephen King",
+    "price": 19.99,
+    "urlImage": "/books/carrie.webp",
+    "category": "Terror",
+    "description": "El acoso escolar tiene consecuencias letales cuando una joven descubre su devastador poder telequinético."
+  },
+  {
+    "id": 7,
+    "title": "Salem's Lot",
+    "author": "Stephen King",
+    "price": 23.5,
+    "urlImage": "/books/salems-lot.webp",
+    "category": "Terror",
+    "description": "Un escritor regresa a su pueblo natal solo para descubrir que sus habitantes se están transformando en vampiros."
+  },
+  {
+    "id": 8,
+    "title": "Apocalipsis (The Stand)",
+    "author": "Stephen King",
+    "price": 34.99,
+    "urlImage": "/books/apocalipsis.webp",
+    "category": "Fantasía",
+    "description": "Un virus letal diezma a la humanidad, dejando a los sobrevivientes en una batalla épica entre el bien y el mal."
+  },
+  {
+    "id": 9,
+    "title": "La Milla Verde",
+    "author": "Stephen King",
+    "price": 25.0,
+    "urlImage": "/books/la-milla-verde.webp",
+    "category": "Drama",
+    "description": "En el corredor de la muerte, un prisionero con un don milagroso cambia la vida de los guardias que lo custodian."
+  },
+  {
+    "id": 10,
+    "title": "El Visitante",
+    "author": "Stephen King",
+    "price": 26.5,
+    "urlImage": "/books/el-visitante.webp",
+    "category": "Suspenso",
+    "description": "Un crimen espantoso apunta a un culpable irrefutable, pero las pruebas sugieren algo que desafía la lógica humana."
+  },
+  {
+    "id": 11,
+    "title": "Doctor Sueño",
+    "author": "Stephen King",
+    "price": 24.0,
+    "urlImage": "/books/doctor-sueno.webp",
+    "category": "Terror",
+    "description": "La secuela de El Resplandor. Danny Torrance, ahora adulto, debe proteger a una niña con poderes similares a los suyos."
+  },
+  {
+    "id": 12,
+    "title": "El Instituto",
+    "author": "Stephen King",
+    "price": 27.99,
+    "urlImage": "/books/el-instituto.webp",
+    "category": "Ciencia Ficción",
+    "description": "Niños con dones extraordinarios son secuestrados y encerrados en unas instalaciones de las que nadie ha escapado."
+  },
+  {
+    "id": 13,
+    "title": "La Torre Oscura I: El Pistolero",
+    "author": "Stephen King",
+    "price": 20.0,
+    "urlImage": "/books/la-torre-oscura-1.webp",
+    "category": "Fantasía",
+    "description": "El inicio de la saga magna. Roland Deschain persigue al Hombre de Negro a través de un mundo devastado."
+  },
+  {
+    "id": 14,
+    "title": "Un Saco de Huesos",
+    "author": "Stephen King",
+    "price": 21.99,
+    "urlImage": "/books/un-saco-de-huesos.webp",
+    "category": "Terror",
+    "description": "Un novelista en duelo se retira a su cabaña junto al lago, donde es atormentado por pesadillas y presencias invisibles."
+  },
+  {
+    "id": 15,
+    "title": "El Juego de Gerald",
+    "author": "Stephen King",
+    "price": 19.5,
+    "urlImage": "/books/el-juego-de-gerald.webp",
+    "category": "Suspenso",
+    "description": "Un inofensivo juego conyugal se convierte en una lucha desesperada por la supervivencia física y mental."
+  },
+  {
+    "id": 16,
+    "title": "Cujo",
+    "author": "Stephen King",
+    "price": 18.99,
+    "urlImage": "/books/cujo.webp",
+    "category": "Terror",
+    "description": "Un dócil San Bernardo contrae la rabia y se convierte en una bestia asesina que aterroriza a un pequeño pueblo."
+  },
+  {
+    "id": 17,
+    "title": "Christine",
+    "author": "Stephen King",
+    "price": 22.0,
+    "urlImage": "/books/christine.webp",
+    "category": "Terror",
+    "description": "Un Plymouth Fury de 1958 desarrolla una personalidad posesiva y mortal hacia su nuevo y joven dueño."
+  },
+  {
+    "id": 18,
+    "title": "La Cúpula",
+    "author": "Stephen King",
+    "price": 28.5,
+    "urlImage": "/books/la-cupula.webp",
+    "category": "Ciencia Ficción",
+    "description": "Un pueblo queda aislado del resto del mundo por un campo de fuerza invisible. La verdadera amenaza está adentro."
+  },
+  {
+    "id": 19,
+    "title": "22/11/63",
+    "author": "Stephen King",
+    "price": 29.0,
+    "urlImage": "/books/22-11-63.webp",
+    "category": "Ciencia Ficción",
+    "description": "Un profesor viaja al pasado con una misión titánica: evitar el asesinato de John F. Kennedy."
+  },
+  {
+    "id": 20,
+    "title": "El Talismán",
+    "author": "Stephen King & Peter Straub",
+    "price": 30.0,
+    "urlImage": "/books/el-talisman.webp",
+    "category": "Fantasía",
+    "description": "Jack Sawyer emprende un viaje épico a través de mundos paralelos en busca del Talismán, un objeto capaz de salvar la vida de su madre."
+  },
+  {
+    "id": 21,
+    "title": "El Traje del Muerto",
+    "author": "Joe Hill",
+    "price": 21.0,
+    "urlImage": "/books/el-traje-del-muerto.webp",
+    "category": "Terror",
+    "description": "Un rockero retirado compra por internet el traje de un hombre muerto, pero el fantasma del dueño viene incluido."
+  },
+  {
+    "id": 22,
+    "title": "Cuernos",
+    "author": "Joe Hill",
+    "price": 23.99,
+    "urlImage": "/books/cuernos.jpg",
+    "category": "Fantasía",
+    "description": "Tras la muerte de su novia, Ignatius despierta con una resaca brutal y un par de cuernos creciendo en su frente."
+  },
+  {
+    "id": 23,
+    "title": "NOS4A2 (Nosferatu)",
+    "author": "Joe Hill",
+    "price": 26.0,
+    "urlImage": "/books/nos4a2.webp",
+    "category": "Terror",
+    "description": "Charles Manx secuestra niños en su Rolls-Royce y los lleva a Christmasland, un lugar donde la infelicidad es ilegal."
+  },
+  {
+    "id": 24,
+    "title": "Fuego",
+    "author": "Joe Hill",
+    "price": 25.5,
+    "urlImage": "/books/fuego.webp",
+    "category": "Ciencia Ficción",
+    "description": "Una plaga letal de esporas hace que las personas ardan espontáneamente. Una enfermera embarazada debe sobrevivir."
+  },
+  {
+    "id": 25,
+    "title": "Fantasmas",
+    "author": "Joe Hill",
+    "price": 19.99,
+    "urlImage": "/books/fantasmas.webp",
+    "category": "Terror",
+    "description": "Una colección de relatos cortos y perturbadores que demuestran que el talento para el miedo corre por sus venas."
+  },
+  {
+    "id": 26,
+    "title": "El Bazar de los malos sueños",
+    "author": "Stephen King",
+    "price": 18.0,
+    "urlImage": "/books/el-bazar.webp",
+    "category": "Suspenso",
+    "description": "Un científico obsesivo descubre cómo encoger objetos y seres vivos, desatando una espiral de poder y control."
+  },
+  {
+    "id": 27,
+    "title": "El umbral de la noche",
+    "author": "Tabitha King",
+    "price": 20.5,
+    "urlImage": "/books/el-umbral.webp",
+    "category": "Drama",
+    "description": "La única sobreviviente de un brutal accidente de tráfico intenta reconstruir su vida mientras los oscuros secretos salen a la luz."
+  },
+  {
+    "id": 28,
+    "title": "Voces del silencio",
+    "author": "Tabitha King",
+    "price": 19.0,
+    "urlImage": "/books/voces-del-silencio.webp",
+    "category": "Drama",
+    "description": "Una mirada profunda y psicológica a las dinámicas familiares y los traumas enterrados en un pequeño pueblo de Maine."
+  },
+  {
+    "id": 29,
+    "title": "Bellas Durmientes",
+    "author": "Owen King & Stephen King",
+    "price": 28.0,
+    "urlImage": "/books/bellas-durmientes.webp",
+    "category": "Fantasía",
+    "description": "Una misteriosa epidemia hace que todas las mujeres del mundo caigan en un sueño profundo y se envuelvan en capullos."
+  },
+  {
+    "id": 30,
+    "title": "El Museo",
+    "author": "Owen King",
+    "price": 22.99,
+    "urlImage": "/books/el-museo.webp",
+    "category": "Fantasía",
+    "description": "En una ciudad dividida por revoluciones y magia latente, una joven busca la verdad tras la extraña muerte de su hermano."
+  }
+]
