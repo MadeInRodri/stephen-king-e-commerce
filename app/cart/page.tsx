@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { FaShoppingCart, FaTrash } from "react-icons/fa";
 import { BiSolidExit } from "react-icons/bi";
 import "../globals.css";
+import Cart from "@/components/cart/Cart";
 
 interface Book {
   id: number;
@@ -330,166 +331,14 @@ export default function CartPage() {
       </footer>
 
       {isCartOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden md:block"
-            onClick={() => setIsCartOpen(false)}
-          ></div>
-
-          <div className="fixed inset-0 md:inset-y-0 md:left-auto md:right-0 w-full md:w-[450px] bg-[#050505] md:border-l md:border-white/10 z-50 flex flex-col shadow-2xl">
-            <div className="pt-8 pb-4 px-6 flex items-center justify-between border-b border-white/10">
-              <h2 className="text-2xl font-extrabold text-[#ff00ff] uppercase tracking-tighter">
-                Carrito
-              </h2>
-              <button
-                onClick={() => setIsCartOpen(false)}
-                className="text-[#a3a3a3] hover:text-white transition-colors text-2xl font-bold"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-4">
-              {cartItems.map((b) => (
-                <article
-                  className="cart-item-panel rounded-xl flex p-3 gap-4 items-center group"
-                  key={b.id}
-                >
-                  <div className="w-[70px] h-[100px] relative shrink-0 bg-[#0e0e0e] rounded overflow-hidden">
-                    <Image
-                      src={b.urlImage}
-                      alt="El Resplandor"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col justify-between py-1">
-                    <div>
-                      <h3 className="text-lg font-bold text-white leading-tight mb-1">
-                        {b.title}
-                      </h3>
-                      <p className="text-[#00fbfb] text-sm font-mono font-bold mb-3">
-                        ${b.price}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 bg-[#050505] rounded-md px-2 py-1 border border-white/10">
-                        <button
-                          className="text-[#a3a3a3] hover:text-[#ff00ff] transition-colors font-bold px-1"
-                          onClick={() => substractCartItem(b.id)}
-                        >
-                          −
-                        </button>
-                        <span className="text-white text-sm font-mono">
-                          {b.quantity}
-                        </span>
-                        <button
-                          className="text-[#a3a3a3] hover:text-[#ff00ff] transition-colors font-bold px-1"
-                          onClick={() => {
-                            addCartItem(b.id);
-                          }}
-                        >
-                          +
-                        </button>
-                      </div>
-                      <button
-                        className="text-[#a3a3a3] hover:text-red-500 transition-colors p-1"
-                        onClick={() => handleRemoveClick(b.id)}
-                      >
-                        <FaTrash />
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              ))}
-              {/* Item 1 */}
-              {/* <article className="cart-item-panel rounded-xl flex p-3 gap-4 items-center group">
-                <div className="w-[70px] h-[100px] relative shrink-0 bg-[#0e0e0e] rounded overflow-hidden">
-                  <Image
-                    src="/books/el-resplandor.webp"
-                    alt="El Resplandor"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex-1 flex flex-col justify-between py-1">
-                  <div>
-                    <h3 className="text-lg font-bold text-white leading-tight mb-1">
-                      El Resplandor
-                    </h3>
-                    <p className="text-[#00fbfb] text-sm font-mono font-bold mb-3">
-                      $24.99
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3 bg-[#050505] rounded-md px-2 py-1 border border-white/10">
-                      <button className="text-[#a3a3a3] hover:text-[#ff00ff] transition-colors font-bold px-1">
-                        −
-                      </button>
-                      <span className="text-white text-sm font-mono">1</span>
-                      <button className="text-[#a3a3a3] hover:text-[#ff00ff] transition-colors font-bold px-1">
-                        +
-                      </button>
-                    </div>
-                    <button className="text-[#a3a3a3] hover:text-red-500 transition-colors p-1">
-                      <FaTrash />
-                    </button>
-                  </div>
-                </div>
-              </article> */}
-
-              {/* Item 2 */}
-              {/* <article className="cart-item-panel rounded-xl flex p-3 gap-4 items-center group">
-                <div className="w-[70px] h-[100px] relative shrink-0 bg-[#0e0e0e] rounded overflow-hidden">
-                  <Image
-                    src="/books/it.webp"
-                    alt="It"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex-1 flex flex-col justify-between py-1">
-                  <div>
-                    <h3 className="text-lg font-bold text-white leading-tight mb-1">
-                      It (Eso)
-                    </h3>
-                    <p className="text-[#00fbfb] text-sm font-mono font-bold mb-3">
-                      $29.99
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3 bg-[#050505] rounded-md px-2 py-1 border border-white/10">
-                      <button className="text-[#a3a3a3] hover:text-[#ff00ff] transition-colors font-bold px-1">
-                        −
-                      </button>
-                      <span className="text-white text-sm font-mono">2</span>
-                      <button className="text-[#a3a3a3] hover:text-[#ff00ff] transition-colors font-bold px-1">
-                        +
-                      </button>
-                    </div>
-                    <button className="text-[#a3a3a3] hover:text-red-500 transition-colors p-1">
-                      <FaTrash />
-                    </button>
-                  </div>
-                </div>
-              </article> */}
-            </div>
-
-            <div className="bg-[#131313] border-t border-white/10 p-6">
-              <div className="flex justify-between items-end mb-6">
-                <span className="text-[#a3a3a3] uppercase tracking-widest text-xs font-bold">
-                  Total
-                </span>
-                <span className="text-xl font-bold text-[#ff00ff] font-mono">
-                  ${total}
-                </span>
-              </div>
-              <button className="w-full bg-[#ff00ff] text-black font-bold py-4 rounded-md uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#d900d9] transition-colors active:scale-95">
-                Finalizar Compra →
-              </button>
-            </div>
-          </div>
-        </>
+        <Cart
+          cartItems={cartItems}
+          total={total}
+          setIsCartOpen={setIsCartOpen}
+          addCartItem={addCartItem}
+          substractCartItem={substractCartItem}
+          handleRemoveClick={handleRemoveClick}
+        />
       )}
     </div>
   );
