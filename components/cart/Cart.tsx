@@ -5,13 +5,7 @@ import CartItem from "./CartItem";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-interface CartBook {
-  id: number;
-  title: string;
-  price: number;
-  urlImage: string;
-  quantity: number;
-}
+import { CartBook } from "@/types/index";
 
 interface CartProps {
   cartItems: CartBook[];

@@ -12,15 +12,7 @@ import ProductCard from "@/components/product/ProductCard";
 import DesktopHeader from "@/components/ui/DesktopHeader";
 import MobileHeader from "@/components/ui/MobileHeader";
 
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  urlImage: string;
-  category: string;
-  description: string;
-}
+import { Book } from "@/types/index";
 
 export default function LandingPage() {
   //Libros

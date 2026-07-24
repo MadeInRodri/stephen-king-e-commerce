@@ -2,16 +2,10 @@ import React from "react";
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 
-interface cartBook {
-  id: number;
-  title: string;
-  price: number;
-  urlImage: string;
-  quantity: number;
-}
+import { CartBook } from "@/types/index";
 
 interface CartItemProps {
-  b: cartBook;
+  b: CartBook;
   substractCartItem: (id: number) => void;
   addCartItem: (id: number) => void;
   handleRemoveClick: (id: number) => void;

@@ -14,28 +14,7 @@ import ProductCard from "@/components/product/ProductCard";
 import DesktopHeader from "@/components/ui/DesktopHeader";
 import MobileHeader from "@/components/ui/MobileHeader";
 
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  urlImage: string;
-  category: string;
-  description: string;
-}
-
-interface userData {
-  fullName: string;
-  email: string;
-}
-
-interface cartBook {
-  id: number;
-  title: string;
-  price: number;
-  urlImage: string;
-  quantity: number;
-}
+import { Book, userSession, CartBook } from "@/types/index";
 
 export default function CartPage() {
   //States
@@ -44,7 +23,7 @@ export default function CartPage() {
   const [userName, setUserName] = useState<string>(
     "A EL BAZAR DE LAS PESADILLAS",
   );
-  const [cartItems, setCartItems] = useState<cartBook[]>(() => {
+  const [cartItems, setCartItems] = useState<CartBook[]>(() => {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("cartItems");
       return savedCart ? JSON.parse(savedCart) : [];
@@ -65,7 +44,7 @@ export default function CartPage() {
 
     //Ya está en mi carrito?
     const existingItem = cartItems.find((item) => item.id === id);
-    let updatedCart: cartBook[];
+    let updatedCart: CartBook[];
 
     //Sisi, solo le sumamos 1 a la cantidad
     if (existingItem) {
@@ -76,7 +55,7 @@ export default function CartPage() {
 
       //Si no, agregamos uno nuevo
     } else {
-      const newItem: cartBook = {
+      const newItem: CartBook = {
         id: Number(book.id),
         title: book.title,
         price: book.price,
@@ -176,7 +155,7 @@ export default function CartPage() {
 
         //De paso traemos los datos del usuario
         const books: Book[] = await response.json();
-        const user: userData = JSON.parse(activeSession as string);
+        const user: userSession = JSON.parse(activeSession as string);
 
         setBooks(books);
         setUserName(user.fullName);

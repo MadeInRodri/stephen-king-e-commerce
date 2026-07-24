@@ -1,22 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  urlImage: string;
-  category: string;
-  description: string;
-}
+import { Book } from "@/types/index";
 
-interface ProductListProps {
+interface ProductCardProps {
   b: Book;
   action: () => void;
 }
 
-export default function ProductCard({ b, action }: ProductListProps) {
+export default function ProductCard({ b, action }: ProductCardProps) {
   return (
     <article
       className="glass-card rounded-lg flex flex-col md:flex-row overflow-hidden group h-full"

@@ -5,13 +5,7 @@ import "../../globals.css";
 import bcrypt from "bcryptjs";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-
-interface userData {
-  fullName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { userData } from "@/types/index";
 
 export default function RegisterPage() {
   const { register, handleSubmit, reset, resetField } = useForm<userData>();

@@ -5,17 +5,7 @@ import { toast } from "sonner";
 import bcrypt from "bcryptjs";
 import { useRouter } from "next/navigation";
 
-interface userLogin {
-  email: string;
-  password: string;
-}
-
-interface userData {
-  fullName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { userLogin, userData } from "@/types/index";
 
 export default function LoginPage() {
   const router = useRouter();

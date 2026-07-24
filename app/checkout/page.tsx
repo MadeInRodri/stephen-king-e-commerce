@@ -10,21 +10,10 @@ import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
 import { toast } from "sonner";
 
-interface cartBook {
-  id: number;
-  title: string;
-  price: number;
-  urlImage: string;
-  quantity: number;
-}
-
-interface userData {
-  fullName: string;
-  email: string;
-}
+import { CartBook, userSession } from "@/types/index";
 
 export default function CheckoutPage() {
-  const [cartItems, setCartItems] = useState<cartBook[]>([]);
+  const [cartItems, setCartItems] = useState<CartBook[]>([]);
   const [userName, setUserName] = useState<string>(
     "A EL BAZAR DE LAS PESADILLAS",
   );
@@ -40,7 +29,7 @@ export default function CheckoutPage() {
         const savedCart = localStorage.getItem("cartItems");
         if (savedCart) setCartItems(JSON.parse(savedCart));
 
-        const user: userData = JSON.parse(activeSession as string);
+        const user: userSession = JSON.parse(activeSession as string);
         setUserName(user.fullName);
       } catch (error) {
         console.error("Error cargando los libros:", error);
