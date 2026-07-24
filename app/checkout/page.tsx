@@ -186,10 +186,7 @@ export default function CheckoutPage() {
               id="factura-table"
               className="bg-[#131313] border border-white/10 rounded-xl p-2 md:p-6 overflow-x-auto"
             >
-              <table
-                // id="factura-table"
-                className="w-full text-left border-collapse min-w-[500px]"
-              >
+              <table className="w-full text-left border-collapse min-w-[500px]">
                 <thead>
                   <tr className="border-b border-white/10 text-[#a3a3a3] uppercase text-xs font-mono tracking-widest">
                     <th className="py-4 px-2 font-normal">Producto</th>
@@ -241,7 +238,6 @@ export default function CheckoutPage() {
                 </tbody>
                 {cartItems.length > 0 && (
                   <tfoot>
-                    {/* Fila de Subtotal */}
                     <tr className="border-t border-white/10 text-sm">
                       <td
                         colSpan={3}
@@ -273,6 +269,7 @@ export default function CheckoutPage() {
                       >
                         Total Final
                       </td>
+
                       <td className="py-4 px-2 text-right text-[#00fbfb] font-mono font-bold">
                         ${finalTotal.toFixed(2)} USD
                       </td>

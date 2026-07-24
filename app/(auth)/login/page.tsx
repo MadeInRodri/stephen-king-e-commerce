@@ -61,7 +61,7 @@ export default function LoginPage() {
       return;
     }
 
-    //Guadamos en sesión
+    //Guardamos en sesión
     sessionStorage.setItem(
       "activeUser",
       JSON.stringify({

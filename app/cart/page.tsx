@@ -1,19 +1,18 @@
 "use client";
+import "../globals.css";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { toast } from "sonner";
+
+//Next
 import { useRouter } from "next/navigation";
-import { FaShoppingCart, FaTrash } from "react-icons/fa";
-import { BiSolidExit } from "react-icons/bi";
-import "../globals.css";
 
 //Componentes
 import Cart from "@/components/cart/Cart";
 import Footer from "@/components/ui/Footer";
 import ProductCard from "@/components/product/ProductCard";
-import Nav from "@/components/ui/Nav";
+import DesktopHeader from "@/components/ui/DesktopHeader";
+import MobileHeader from "@/components/ui/MobileHeader";
 
 interface Book {
   id: number;
@@ -191,58 +190,20 @@ export default function CartPage() {
 
   return (
     <div className="text-[#e5e2e1] min-h-screen flex flex-col relative overflow-x-hidden bg-[#050505] font-sans">
-      {/* Header */}
       <header className="bg-[#131313]/90 backdrop-blur-xl fixed top-0 w-full border-b border-white/10 z-30">
-        <div className="flex justify-between items-center px-4 md:px-16 py-4 w-full max-w-7xl mx-auto hidden md:flex">
-          <div className="text-[#ff00ff] font-extrabold text-2xl tracking-tighter uppercase">
-            BIENVENID@,{" "}
-            <span className="text-amber-500 font-extrabold text-2xl tracking-tighter uppercase">
-              {userName}
-            </span>
-          </div>
-          <Nav />
-          <div className="flex gap-6 text-[#ff00ff]">
-            <button
-              onClick={() => setIsCartOpen(true)}
-              className="hover:text-[#00fbfb] transition-colors duration-300 text-xl"
-            >
-              <FaShoppingCart />
-            </button>
-            <button
-              onClick={exit}
-              className="hover:text-[#00fbfb] transition-colors duration-300 text-xl"
-            >
-              <BiSolidExit />
-            </button>
-          </div>
-        </div>
+        <DesktopHeader
+          userName={userName}
+          action={exit}
+          cartAction={() => setIsCartOpen(true)}
+        />
 
-        {/* Mobile Header */}
-        <div className="md:hidden flex justify-between items-center px-4 py-4 border-b border-white/10">
-          <div className="text-[#ff00ff] font-extrabold text-lg tracking-tighter uppercase">
-            BIENVENID@, <br />
-            <span className="text-amber-500 font-extrabold text-lg tracking-tighter uppercase">
-              {userName}
-            </span>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setIsCartOpen(true)}
-              className="text-[#ff00ff] hover:text-[#00fbfb] transition-colors duration-300 text-xl"
-            >
-              <FaShoppingCart />
-            </button>
-            <button
-              onClick={exit}
-              className="text-[#ff00ff] hover:text-[#00fbfb] transition-colors duration-300 text-xl"
-            >
-              <BiSolidExit />
-            </button>
-          </div>
-        </div>
+        <MobileHeader
+          userName={userName}
+          action={exit}
+          cartAction={() => setIsCartOpen(true)}
+        />
       </header>
 
-      {/* Catálogo Principal */}
       <main className="flex-grow pt-24 pb-32">
         <section className="w-full max-w-7xl mx-auto px-4 md:px-16 py-12">
           <h2 className="text-3xl font-bold text-white mb-10 border-b border-white/15 pb-4">
@@ -263,7 +224,6 @@ export default function CartPage() {
         </section>
       </main>
 
-      {/* Footer */}
       <Footer />
 
       {isCartOpen && (
