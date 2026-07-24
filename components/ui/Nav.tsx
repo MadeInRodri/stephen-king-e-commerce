@@ -16,18 +16,6 @@ export default function Nav() {
       >
         Catálogo
       </Link>
-      <Link
-        href="/login"
-        className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
-      >
-        Novedades
-      </Link>
-      <Link
-        href="/login"
-        className="text-[#a3a3a3] hover:text-[#00fbfb] transition-colors duration-300"
-      >
-        Autores
-      </Link>
     </nav>
   );
 }

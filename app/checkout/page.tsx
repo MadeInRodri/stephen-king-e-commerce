@@ -162,7 +162,14 @@ export default function CheckoutPage() {
                   Descargar Factura PDF
                 </button>
 
-                <button className="w-full border border-[#00fbfb] text-[#00fbfb] font-bold py-3 rounded-md uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#00fbfb]/10 transition-colors active:scale-95 text-sm">
+                <button
+                  onClick={() => {
+                    toast.warning(
+                      "Esta función aún no ha sido implementada, disculpe las molestias",
+                    );
+                  }}
+                  className="w-full border border-[#00fbfb] text-[#00fbfb] font-bold py-3 rounded-md uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#00fbfb]/10 transition-colors active:scale-95 text-sm"
+                >
                   <FaEnvelope className="text-lg" />
                   Enviar al Correo
                 </button>
@@ -171,11 +178,11 @@ export default function CheckoutPage() {
           </div>
 
           <div className="w-full lg:col-span-8 order-2 lg:order-1">
-            <div
-              id="factura-table"
-              className="bg-[#131313] border border-white/10 rounded-xl p-2 md:p-6 overflow-x-auto"
-            >
-              <table className="w-full text-left border-collapse min-w-[500px]">
+            <div className="bg-[#131313] border border-white/10 rounded-xl p-2 md:p-6 overflow-x-auto">
+              <table
+                className="w-full text-left border-collapse min-w-[500px]"
+                id="factura-table"
+              >
                 <thead>
                   <tr className="border-b border-white/10 text-[#a3a3a3] uppercase text-xs font-mono tracking-widest">
                     <th className="py-4 px-2 font-normal">Producto</th>
