@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 import CartItem from "./CartItem";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface CartBook {
   id: number;
@@ -28,6 +30,15 @@ export default function Cart({
   substractCartItem,
   handleRemoveClick,
 }: CartProps) {
+  const route = useRouter();
+
+  const goToCheckout = () => {
+    toast.info("Generando su factura...");
+    setTimeout(() => {
+      route.push("/checkout");
+    }, 2000);
+  };
+
   return (
     <>
       <div
@@ -66,10 +77,13 @@ export default function Cart({
               Total
             </span>
             <span className="text-xl font-bold text-[#ff00ff] font-mono">
-              ${total}
+              ${total.toFixed(2)}
             </span>
           </div>
-          <button className="w-full bg-[#ff00ff] text-black font-bold py-4 rounded-md uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#d900d9] transition-colors active:scale-95">
+          <button
+            onClick={goToCheckout}
+            className="w-full bg-[#ff00ff] text-black font-bold py-4 rounded-md uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#d900d9] transition-colors active:scale-95"
+          >
             Finalizar Compra →
           </button>
         </div>

@@ -43,7 +43,7 @@ export default function CartPage() {
   const [books, setBooks] = useState<Book[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [userName, setUserName] = useState<string>(
-    "EL BAZAR DE LAS PESADILLAS",
+    "A EL BAZAR DE LAS PESADILLAS",
   );
   const [cartItems, setCartItems] = useState<cartBook[]>(() => {
     if (typeof window !== "undefined") {

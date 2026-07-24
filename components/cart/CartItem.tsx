@@ -42,7 +42,7 @@ export default function CartItem({
             {b.title}
           </h3>
           <p className="text-[#00fbfb] text-sm font-mono font-bold mb-3">
-            ${b.price}
+            ${b.price.toFixed(2)}
           </p>
         </div>
         <div className="flex items-center justify-between">

@@ -42,7 +42,9 @@ export default function ProductCard({ b, action }: ProductListProps) {
           </p>
         </div>
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
-          <span className="text-[#00fbfb] font-bold font-mono">${b.price}</span>
+          <span className="text-[#00fbfb] font-bold font-mono">
+            ${b.price.toFixed(2)}
+          </span>
           <button
             className="border border-[#00fbfb] text-[#00fbfb] text-sm font-bold px-4 py-2 rounded hover:bg-[#00fbfb]/10 transition-colors"
             onClick={action}
