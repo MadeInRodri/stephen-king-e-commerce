@@ -149,6 +149,7 @@ export default function CartPage() {
       if (!activeSession) {
         route.push("/login");
       }
+
       try {
         const response = await fetch("/products.json");
         if (!response.ok) throw new Error("Error de conexión");

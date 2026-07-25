@@ -9,8 +9,11 @@ import { useRouter } from "next/navigation";
 import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 
 import { CartBook, userSession } from "@/types/index";
+import DesktopHeader from "@/components/ui/DesktopHeader";
+import MobileHeader from "@/components/ui/MobileHeader";
 
 export default function CheckoutPage() {
   const [cartItems, setCartItems] = useState<CartBook[]>([]);
@@ -44,11 +47,21 @@ export default function CheckoutPage() {
     0,
   );
 
+  const exit = () => {
+    //Destruimos la sesión
+    sessionStorage.clear();
+    toast.info("Se ha cerrado sesión exitosamente, redirigiendo...");
+    setTimeout(() => {
+      route.push("/");
+    }, 2000);
+  };
+
   const shipping = 5.0;
   const finalTotal = total > 0 ? total + shipping : 0;
 
   const handleDownloadPDF = async () => {
     toast.info("Generando pdf...");
+
     try {
       const element = document.getElementById("factura-table");
       if (!element) return;
@@ -90,32 +103,57 @@ export default function CheckoutPage() {
     }
   };
 
+  const handleSendEmail = async () => {
+    const userData: userSession = JSON.parse(
+      sessionStorage.getItem("activeUser") as string,
+    );
+
+    const userName = userData.fullName;
+    const userEmail = userData.email;
+
+    const toastId = toast.loading("Invocando a los mensajeros de la niebla...");
+
+    try {
+      const templateParams = {
+        user_name: userName,
+        email: userEmail,
+        total_amount: finalTotal.toFixed(2),
+      };
+
+      await emailjs.send(
+        "service_hbbl2su",
+        "template_82kpvta",
+        templateParams,
+        "Vll8lTttY86JaI4Y8",
+      );
+      toast.success("Recibo enviado exitosamente a tu destino.", {
+        id: toastId,
+      });
+    } catch (error) {
+      toast.error("Hubo una interferencia en el vacío. Intenta de nuevo.", {
+        id: toastId,
+      });
+    }
+  };
+
   return (
     <div className="text-[#e5e2e1] min-h-screen flex flex-col relative overflow-x-hidden bg-[#050505] font-sans">
-      <header className="bg-[#131313]/90 backdrop-blur-xl fixed top-0 w-full border-b border-white/10 z-50">
-        <div className="flex justify-between items-center px-4 md:px-16 py-4 w-full max-w-7xl mx-auto hidden md:flex">
-          <div className="text-[#ff00ff] font-extrabold text-2xl tracking-tighter uppercase">
-            BIENVENID@,{" "}
-            <span className="text-amber-500 font-extrabold text-2xl tracking-tighter uppercase">
-              {userName}
-            </span>
-          </div>
-          <Nav />
-          <div className="flex gap-6 text-[#ff00ff]">
-            <button className="hover:text-[#00fbfb] transition-colors duration-300 text-xl">
-              <FaShoppingCart />
-            </button>
-          </div>
-        </div>
+      <header className="bg-[#131313]/90 backdrop-blur-xl fixed top-0 w-full border-b border-white/10 z-30">
+        <DesktopHeader
+          userName={userName}
+          action={exit}
+          cartAction={() => {
+            route.push("/cart");
+          }}
+        />
 
-        <div className="md:hidden flex justify-between items-center px-4 py-4 border-b border-white/10">
-          <div className="text-[#ff00ff] font-extrabold text-lg tracking-tighter uppercase">
-            EL BAZAR DE LAS <br /> PESADILLAS
-          </div>
-          <button className="text-[#ff00ff] hover:text-[#00fbfb] transition-colors duration-300 text-xl">
-            <FaShoppingCart />
-          </button>
-        </div>
+        <MobileHeader
+          userName={userName}
+          action={exit}
+          cartAction={() => {
+            route.push("/cart");
+          }}
+        />
       </header>
 
       <main className="flex-grow pt-28 pb-32 px-4 md:px-16 max-w-7xl w-full mx-auto">
@@ -163,11 +201,7 @@ export default function CheckoutPage() {
                 </button>
 
                 <button
-                  onClick={() => {
-                    toast.warning(
-                      "Esta función aún no ha sido implementada, disculpe las molestias",
-                    );
-                  }}
+                  onClick={handleSendEmail}
                   className="w-full border border-[#00fbfb] text-[#00fbfb] font-bold py-3 rounded-md uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#00fbfb]/10 transition-colors active:scale-95 text-sm"
                 >
                   <FaEnvelope className="text-lg" />
